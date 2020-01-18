@@ -4,6 +4,7 @@
 // use std::vec::Vec;
 use std::collections::HashMap;
 
+/// Returns a f64 fload mean value of a given array list of u32. the average value
 pub fn get_mean(list: &[u32]) -> f64 {
     // could have used vector : &Vec<u32>
     println!("mod called");
@@ -15,7 +16,7 @@ pub fn get_mean(list: &[u32]) -> f64 {
     let sum: u32 = list.iter().sum(); //<- Iterator::sum
     sum as f64 / list.len() as f64
 }
-
+/// return the median value of a u32 array. [1,2,3] -> 2
 pub fn get_median(list: &[u32]) -> f64 {
     let len = list.len();
     let mid = len / 2;
@@ -25,7 +26,7 @@ pub fn get_median(list: &[u32]) -> f64 {
         list[mid] as f64
     }
 }
-
+/// gets the mode of a given u32 array. The value that occurs most often
 pub fn get_mode(list: &[u32]) -> u32 {
     let mut hash_map: HashMap<u32, u32> = HashMap::new();
     let mut max: (u32, u32) = (0, 0);
