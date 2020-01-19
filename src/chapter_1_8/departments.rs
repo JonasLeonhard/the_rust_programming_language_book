@@ -67,17 +67,5 @@
             } else {
                 println!("Input Format Error: try format eg -> 'add x to y' or 'get y");
             }
-            // println!("{:?}", command);
-            //     match command {
-            //         Command::Add { name, department } => {
-            //             // add to data
-            //         }
-            //         Command::GetAll => {
-            //             // get data complete
-            //         }
-            //         _ => {
-            //             // get by id from data key
-            //         }
-            //     }
         }
     }
