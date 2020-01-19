@@ -1,5 +1,5 @@
 use::std::{io};
-
+use::rand::Rng;
 #[derive(Debug)]
 struct Guess {
     value: i32,
@@ -30,8 +30,11 @@ pub fn start() {
 
         let parsed : i32 = buffer.trim().parse().unwrap();
         let guess : Guess = Guess::new(parsed);
-
-        
-        println!("your guess was:: {:?}", guess);
+        let random : i32 = rand::thread_rng().gen_range(0, 100);
+        if random == guess.value{ 
+            println!("you guessed right!");
+            break;
+        }
+        println!("your guess was:: {:?}, right was: {:?}", guess, random);
     }
 }
