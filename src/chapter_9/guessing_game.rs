@@ -24,7 +24,7 @@ pub fn start() {
         let mut buffer = String::new();
         io::stdin().read_line(&mut buffer).expect("InputError:"); 
 
-        if(buffer.trim() == "quit"){
+        if buffer.trim() == "quit"{
             break;
         }
 
