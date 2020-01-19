@@ -2,10 +2,11 @@
 mod chapter_1_8;
 mod chapter_9;
 use chapter_1_8::{departments, median, pig_latin, temperature};
-use chapter_9::{error};
+use chapter_9::{error, guessing_game};
 
 fn main() {
-    error::error();
+    guessing_game::start();
+    // error::error(); 
     // departments::loop_init();
     // temperature::sample_temperature();
     // temperature::get_user_input();
