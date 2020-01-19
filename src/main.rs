@@ -1,8 +1,11 @@
 // mod median;
 mod chapter_1_8;
+mod chapter_9;
 use chapter_1_8::{departments, median, pig_latin, temperature};
+use chapter_9::{error};
 
 fn main() {
+    error::error();
     // departments::loop_init();
     // temperature::sample_temperature();
     // temperature::get_user_input();
