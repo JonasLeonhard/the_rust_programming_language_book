@@ -1,11 +1,14 @@
 // mod median;
 mod chapter_1_8;
 mod chapter_9;
+mod chapter_10;
 use chapter_1_8::{departments, median, pig_latin, temperature};
 use chapter_9::{error, guessing_game};
+use chapter_10::{generic_types};
 
 fn main() {
-    guessing_game::start();
+    generic_types::new();
+    // guessing_game::start();
     // error::error(); 
     // departments::loop_init();
     // temperature::sample_temperature();
