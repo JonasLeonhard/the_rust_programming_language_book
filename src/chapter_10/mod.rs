@@ -1,1 +1,1 @@
-pub mod generic_types;
+pub mod generic_types_traits_lifetimes;

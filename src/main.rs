@@ -4,10 +4,10 @@ mod chapter_9;
 mod chapter_10;
 use chapter_1_8::{departments, median, pig_latin, temperature};
 use chapter_9::{error, guessing_game};
-use chapter_10::{generic_types};
+use chapter_10::{generic_types_traits_lifetimes};
 
 fn main() {
-    generic_types::new();
+    generic_types_traits_lifetimes::new();
     // guessing_game::start();
     // error::error(); 
     // departments::loop_init();
