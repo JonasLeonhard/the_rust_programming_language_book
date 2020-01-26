@@ -20,6 +20,8 @@ pub fn new(){
     // print couldn't be out of scope because longest<'a> has lifetime of
     // the smallest lifetime passed into it.
     println!("The longest string is {}", result); 
+
+    split_string(); 
     }
 }
 
@@ -119,3 +121,32 @@ fn longest<'a>(str1: &'a str, str2: &'a str) -> &'a str {
         str2
     }
 }
+
+#[derive(Debug)]
+struct importantExcerpt<'a> {
+    important : &'a str
+} 
+impl <'a> importantExcerpt<'a> {
+    fn level(&self) -> usize {
+        3
+    }
+    fn announce_and_return_part(&self, announcement: &str) -> &str {
+        println!("Attention please: {}", announcement);
+        self.important // here the return type gets the lifetime of self
+    }
+} 
+
+fn split_string() {
+    let s: &'static str = "I have a static lifetime."; // lifetime for whole duration of program
+    let sentence = String::from("The first part of the string. The second");
+    let first_part = sentence.split(".")
+                            .next()
+                            .expect("couldn't find string");
+    
+    let excerpt = importantExcerpt { important : first_part }; 
+    println!("{:?}", excerpt);
+} // expert needs to be removed from the stack before 
+  // sentence gets removed, at the end of a block this happens 
+  // in the opposite order of creation. 
+  // When you would remove sentence before removing excerpt
+  // the reference in excerpt would be invalid
