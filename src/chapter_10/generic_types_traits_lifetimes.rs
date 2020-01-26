@@ -10,6 +10,17 @@ pub fn new(){
     println!("largest_t_copy: {:?}", largest_t_copy(&vec!["a", "b", "c", "d", "e", "f", "g"]));
     println!("largest_t_clone: {:?}", largest_t_clone(&vec!["a", "b", "c", "d", "e", "f", "g"]));
     println!("largest_t: {:?}", largest_t(&vec!["a", "b", "c", "d", "e", "f", "g"]));
+
+    //Lifetimes:
+    let string1 = String::from("abcd"); // lifetime 'x
+    { 
+    let string2 = "xyz";                // lifetime 'z
+
+    let result = longest(string1.as_str(), string2);
+    // print couldn't be out of scope because longest<'a> has lifetime of
+    // the smallest lifetime passed into it.
+    println!("The longest string is {}", result); 
+    }
 }
 
 fn largest_i32(list: &[i32]) -> i32 {
@@ -98,4 +109,13 @@ fn move_error(){
         .into_iter() // need to use into_iter() here because we want to move here instead of borrow
         .collect::<Vec<_>>();
     println!("{:?}", cloned);
+}
+
+
+fn longest<'a>(str1: &'a str, str2: &'a str) -> &'a str {
+    if str1.len() > str2.len() {
+        str1
+    } else {
+        str2
+    }
 }
