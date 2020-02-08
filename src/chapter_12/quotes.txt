@@ -1,0 +1,22 @@
+Best Programming Quotes of all Time:
+
+1. “when you don’t create things, you become defined by your tastes rather than ability. your tastes only narrow & exclude people. so create.”― Why The Lucky Stiff
+
+2. “Java is to JavaScript what Car is to Carpet.”- Chris Heilmann
+
+3. “Lisp isn’t a language, it’s a building material.” – Alan Kay
+
+4. “Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.” – Brian W. Kernighan
+
+5. The best thing about a boolean is even if you are wrong, you are only off by a bit. – Anonymous
+
+6. The most important thing in the programming language is the name. A language will not succeed without a good name. I have recently invented a very good name and now I am looking for a suitable language. – Donald Knuth
+
+7. “Programmers are in a race with the Universe to create bigger and better idiot-proof programs, while the Universe is trying to create bigger and better idiots.  So far the Universe is winning.” – Rich Cook
+
+8. “There are two ways of constructing a software design: One way is to make it so simple that there are obviously no deficiencies, and the other way is to make it so complicated that there are no obvious deficiencies. The first method is far more difficult.”
+– C.A.R. Hoare
+
+9. “Programs must be written for people to read, and only incidentally for machines to execute.” ― Harold Abelson
+
+10. “If debugging is the process of removing software bugs, then programming must be the process of putting them in.” – Edsger Dijkstra 

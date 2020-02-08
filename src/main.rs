@@ -1,19 +1,22 @@
 // mod median;
-mod chapter_1_8;
-mod chapter_9;
 mod chapter_10;
 mod chapter_11;
+mod chapter_12;
+mod chapter_1_8;
+mod chapter_9;
 
+use chapter_10::generic_types_traits_lifetimes;
+use chapter_11::tests;
+use chapter_12::basicgrep;
 use chapter_1_8::{departments, median, pig_latin, temperature};
 use chapter_9::{error, guessing_game};
-use chapter_10::{generic_types_traits_lifetimes};
-use chapter_11::{tests};
 
 fn main() {
-    tests::new();
+    basicgrep::new();
+    // tests::new();
     // generic_types_traits_lifetimes::new();
     // guessing_game::start();
-    // error::error(); 
+    // error::error();
     // departments::loop_init();
     // temperature::sample_temperature();
     // temperature::get_user_input();

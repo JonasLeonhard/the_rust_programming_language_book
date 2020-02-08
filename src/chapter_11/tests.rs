@@ -1,15 +1,15 @@
 ///? tests options: cargo test --help
 ///? cargo test -- --help
-///? single thread runs tests in order : --test-threads=1 
+///? single thread runs tests in order : --test-threads=1
 ///? single test run cargo test #PartofNAME
 ///? run ignored :cargo test -- --ignored
 pub fn new() {
     println!("tests loaded...");
 }
-// ! Integration Tests in tests directory next to /src 
+// ! Integration Tests in tests directory next to /src
 
 //? Unit tests convention is to put unit tests in module in same code file that
-//? the units are testing 
+//? the units are testing
 #[cfg(test)] //? this tells the compiler to exclude this when cargo build is run
 mod tests {
     #[derive(Debug)]
@@ -24,18 +24,18 @@ mod tests {
         }
         pub fn new(width: u32, height: u32) -> Rectangle {
             if width < 1 || width > 100 || height < 1 || height > 100 {
-                panic!("Rect width must be between 1 and 100, got width:{} height:{}.", width, height);
+                panic!(
+                    "Rect width must be between 1 and 100, got width:{} height:{}.",
+                    width, height
+                );
             }
 
-            Rectangle {
-                width,
-                height,
-            }
+            Rectangle { width, height }
         }
     }
 
     #[test]
-    fn add_two(){
+    fn add_two() {
         assert_eq!(2 + 2, 4);
         assert_ne!(2 + 2, 5);
     }
@@ -47,23 +47,38 @@ mod tests {
     }
 
     #[test]
-    fn larger_can_hold_smaller(){
-        let larger = Rectangle{ width:  3, height: 2};
-        let smaller= Rectangle{ width: 2, height: 2};
+    fn larger_can_hold_smaller() {
+        let larger = Rectangle {
+            width: 3,
+            height: 2,
+        };
+        let smaller = Rectangle {
+            width: 2,
+            height: 2,
+        };
 
         assert!(larger.can_hold(&smaller));
     }
     #[test]
-    fn smaller_can_hold_larger(){
-        let larger = Rectangle{ width:  1, height: 2};
-        let smaller= Rectangle{ width: 2, height: 2};
+    fn smaller_can_hold_larger() {
+        let larger = Rectangle {
+            width: 1,
+            height: 2,
+        };
+        let smaller = Rectangle {
+            width: 2,
+            height: 2,
+        };
 
-        assert!(!smaller.can_hold(&larger), "Bug: The smaller rect can hold the larger");
+        assert!(
+            !smaller.can_hold(&larger),
+            "Bug: The smaller rect can hold the larger"
+        );
     }
 
     #[test]
     #[should_panic(expected = "Rect width must be between 1 and 100, got width:1000 height:1000.")]
-    fn rect_wrong_size_panic(){
+    fn rect_wrong_size_panic() {
         Rectangle::new(1000, 1000);
     }
 

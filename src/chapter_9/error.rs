@@ -6,11 +6,14 @@ pub fn error() {
     println!("called Error module:");
     // panic!("CRASH AND BURN!");
     // result_unwrap();
-    println!("READ: {}", propagating_errors_questionmark_operator().expect("error propagating"));
+    println!(
+        "READ: {}",
+        propagating_errors_questionmark_operator().expect("error propagating")
+    );
 }
 
-fn result_match(){
-let file = File::open("./src/chapter_9/error.txt");
+fn result_match() {
+    let file = File::open("./src/chapter_9/error.txt");
     let file = match file {
         Ok(data) => data,
         Err(error) => match error.kind() {
@@ -28,12 +31,13 @@ let file = File::open("./src/chapter_9/error.txt");
 
 fn result_unwrap() {
     //? unwrap result if not error, else panic!
-    let file = File::open("./src/chapter_9/error.txt").unwrap(); 
+    let file = File::open("./src/chapter_9/error.txt").unwrap();
 }
 
 fn result_expect() {
-    //? unwraps with custom error message:   
-    let file = File::open("./src/chapter_9/error.txt").expect("custom Error message when opening error.txt");
+    //? unwraps with custom error message:
+    let file = File::open("./src/chapter_9/error.txt")
+        .expect("custom Error message when opening error.txt");
 }
 fn result_closures() {
     //? Result<T,E> accepts closures:
@@ -67,10 +71,10 @@ fn propagating_errors() -> Result<String, io::Error> {
     }; // no ; -> return
 }
 
-fn propagating_errors_questionmark_operator() -> Result<String, io::Error>{
-    //? ? Operator returns error when unwrapping result fails.  
-    //? ? is different from match, from function, 
-    //? the error type received is converted into the error type defined 
+fn propagating_errors_questionmark_operator() -> Result<String, io::Error> {
+    //? ? Operator returns error when unwrapping result fails.
+    //? ? is different from match, from function,
+    //? the error type received is converted into the error type defined
     //? in the return type of the current function. This needs 'from' to be defined
     // let mut file = File::open("error.txt")?;
     // let mut read = String::new();
@@ -83,7 +87,7 @@ fn propagating_errors_questionmark_operator() -> Result<String, io::Error>{
 
 fn read_username_from_file() -> Result<String, io::Error> {
     //? same as propagating_errors_questionmarkOperator
-    //? questionmark error in main 
+    //? questionmark error in main
     // fn main() -> Result<(), Box<dyn Error>> {
     //     let f = File::open("hello.txt")?;
 

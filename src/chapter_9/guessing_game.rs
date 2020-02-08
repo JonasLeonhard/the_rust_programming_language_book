@@ -1,5 +1,5 @@
-use::std::{io};
-use::rand::Rng;
+use ::rand::Rng;
+use ::std::io;
 #[derive(Debug)]
 struct Guess {
     value: i32,
@@ -22,16 +22,16 @@ pub fn start() {
     loop {
         println!("Enter a guess between 1 and 100. Type quit to exit()");
         let mut buffer = String::new();
-        io::stdin().read_line(&mut buffer).expect("InputError:"); 
+        io::stdin().read_line(&mut buffer).expect("InputError:");
 
-        if buffer.trim() == "quit"{
+        if buffer.trim() == "quit" {
             break;
         }
 
-        let parsed : i32 = buffer.trim().parse().unwrap();
-        let guess : Guess = Guess::new(parsed);
-        let random : i32 = rand::thread_rng().gen_range(0, 100);
-        if random == guess.value{ 
+        let parsed: i32 = buffer.trim().parse().unwrap();
+        let guess: Guess = Guess::new(parsed);
+        let random: i32 = rand::thread_rng().gen_range(0, 100);
+        if random == guess.value {
             println!("you guessed right!");
             break;
         }
