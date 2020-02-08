@@ -11,8 +11,69 @@ use chapter_12::basicgrep;
 use chapter_1_8::{departments, median, pig_latin, temperature};
 use chapter_9::{error, guessing_game};
 
+use std::io;
+use std::process;
+
 fn main() {
-    basicgrep::new();
+    loop {
+        println!("Loaded: THE_RUST_PROGAMMING_BOOK. \nChoose a Chapter: type a [number]");
+        println!("1. pig_latin_convert");
+        println!("2. get medians");
+        println!("3. temperature");
+        println!("4. Add to departments hashmap");
+        println!("5. Error Handling");
+        println!("6. Guessing Game");
+        println!("7. Generic types, traits and lifetimes");
+        println!("8. Unit Test & Implementation Tests");
+        println!("9. Basic grep implementation");
+        println!("quit. Exit()\n");
+
+        let mut buffer = String::new();
+        io::stdin().read_line(&mut buffer).expect("InputError:");
+
+        let input = buffer.trim();
+        println!("\nChoose {}:\n ", input);
+        match input {
+            "1" => {
+                println!("{:?}", pig_latin::convert_to_piglatin("first".to_string()));
+            },
+            "2" => {
+                println!("{:?}", median::get_mode(&[0, 1, 1, 2, 3, 4, 4, 4]));
+                println!("{}", median::get_median(&[0, 5, 10]));
+                println!("{}", median::get_mean(&[0, 5]));
+            },
+            "3" => {
+                temperature::sample_temperature();
+                temperature::get_user_input();
+            },
+            "4" => {
+                departments::loop_init();
+            },
+            "5" => {
+                error::error();
+            },
+            "6" => {
+                guessing_game::start();
+            },
+            "7" => {
+                generic_types_traits_lifetimes::new();
+            },
+            "8" => {
+                tests::new();
+            },
+            "9" => {
+                basicgrep::new();
+            },
+            "quit" => {
+                process::exit(0);
+            },
+            _ => {}
+        }
+        
+        println!("\n Press any key to run again\n");
+        io::stdin().read_line(&mut buffer).expect("InputError:");
+    }
+    // basicgrep::new();
     // tests::new();
     // generic_types_traits_lifetimes::new();
     // guessing_game::start();
