@@ -11,7 +11,7 @@ use chapter_11::tests;
 use chapter_12::basicgrep;
 use chapter_1_8::{departments, median, pig_latin, temperature};
 use chapter_9::{error, guessing_game};
-use chapter_13::{closures};
+use chapter_13::{closures, iterators};
 
 use std::io;
 use std::process;
@@ -69,6 +69,7 @@ fn main() {
             },
             "10" => {
                 closures::new();
+                iterators::new();
             },
             "quit" => {
                 process::exit(0);

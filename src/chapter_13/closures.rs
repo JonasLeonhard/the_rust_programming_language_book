@@ -1,7 +1,9 @@
 use std::thread;
 use std::time::Duration;
+use std::collections::HashMap;
 
 pub fn new() {
+    // Example 01: Closures and a Cacher struct
     let user_value   = 10;
     let random_value = 100000000;
 
@@ -9,14 +11,23 @@ pub fn new() {
         user_value,
         random_value
     );
+
+    // Example 02: Capturing the environment
+    let x = vec![1, 2, 3];
+    let equal_to_x = move |z| { // optional move keyword takes ownership of variables inside: x
+        z == x
+    };
+    // cant use x from here, because move -> println!("{:?}", x);
+    let y= vec![1, 2, 3];
+    println!("Closure Capture env: {}", equal_to_x(y));
 }
 
-// Chacher struct that implement lazy evaluation / memoization
+// Cacher struct that implement lazy evaluation / memoization
 struct Cacher<T>
     where T : Fn(u32) -> u32 // requited trait bound
 {
     calculation : T,
-    value : Option<u32>,
+    value : Option<HashMap<u32, u32>>,
 }
 impl<T> Cacher<T> 
     where T : Fn(u32) -> u32 
@@ -31,12 +42,22 @@ impl<T> Cacher<T>
     }
 
     fn value(&mut self, arg: u32) -> u32 {
-        match self.value {
-            Some(v) => v, // if some : return value
-            None => {
-                let v = (self.calculation)(arg); // else: calls calculation closure:  calculation(arg) & save if to value
-                self.value = Some(v);
-                v
+        match &mut self.value {
+            Some(value_map) => {
+                if value_map.contains_key(&arg) { // if Cacher contains key -> then return the value pair
+                    *value_map.get(&arg).unwrap()
+                } else {
+                    let value = (self.calculation)(arg); // if !contains key -> return calculation value and put arg into value_map
+                    value_map.insert(arg, value);
+                    value
+                }
+            }, // if some : return value
+            None => { // no hasmap: create cache hashmap with value arg as key and calc as value
+                let mut value_map = HashMap::new(); // else: calls calculation closure:  calculation(arg) & save if to value
+                let value  = (self.calculation)(arg);
+                value_map.insert(arg, value);
+                self.value = Some(value_map);
+                value
             },
         }
     }
