@@ -4,12 +4,14 @@ mod chapter_11;
 mod chapter_12;
 mod chapter_1_8;
 mod chapter_9;
+mod chapter_13;
 
 use chapter_10::generic_types_traits_lifetimes;
 use chapter_11::tests;
 use chapter_12::basicgrep;
 use chapter_1_8::{departments, median, pig_latin, temperature};
 use chapter_9::{error, guessing_game};
+use chapter_13::{closures};
 
 use std::io;
 use std::process;
@@ -26,6 +28,7 @@ fn main() {
         println!("7. Generic types, traits and lifetimes");
         println!("8. Unit Test & Implementation Tests");
         println!("9. Basic grep implementation");
+        println!("10. Functional Language Features: Iterators and Closures");
         println!("quit. Exit()\n");
 
         let mut buffer = String::new();
@@ -63,6 +66,9 @@ fn main() {
             },
             "9" => {
                 basicgrep::new();
+            },
+            "10" => {
+                closures::new();
             },
             "quit" => {
                 process::exit(0);
