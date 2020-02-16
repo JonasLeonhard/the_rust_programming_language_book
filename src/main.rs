@@ -80,16 +80,4 @@ fn main() {
         println!("\n Press any key to run again\n");
         io::stdin().read_line(&mut buffer).expect("InputError:");
     }
-    // basicgrep::new();
-    // tests::new();
-    // generic_types_traits_lifetimes::new();
-    // guessing_game::start();
-    // error::error();
-    // departments::loop_init();
-    // temperature::sample_temperature();
-    // temperature::get_user_input();
-    // println!("{}", median::get_mean(&[0, 5])); // -> 2.5?
-    // println!("{}", median::get_median(&[0, 5, 10])); // -> 5
-    // println!("{:?}", median::get_mode(&[0, 1, 1, 2, 3, 4, 4, 4])); // -> 4
-    // println!("{:?}", pig_latin::convert_to_piglatin("first".to_string()));
 }

@@ -16,9 +16,9 @@ mod lib;
 use lib::{run, Arguments};
 
 pub fn new() {
-    let args: Vec<String> = args().collect(); // get command line args -> [0]= exec name, [...]=argument
-
-    let arguments = Arguments::new(&args).unwrap_or_else(|err| {
+    // let args: Vec<String> = args().collect(); 
+    // get command line args -> [0]= exec name, [...]=argument
+    let arguments = Arguments::new(args()).unwrap_or_else(|err| {
         eprintln!("Problem parsing arguments: {}", err);
         process::exit(1);
     });
