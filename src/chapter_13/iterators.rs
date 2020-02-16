@@ -44,8 +44,35 @@ fn filters_by_size() {
     );
 }
 
+#[derive(Debug)]
+struct Counter {
+    count: u32,
+}
+
+impl Counter {
+    fn new() -> Counter {
+        Counter { count: 0 }
+    }
+}
+
+impl Iterator for Counter {
+    type Item = u32;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        self.count += 1;
+        if self.count < 6 {
+            Some(self.count)
+        } else {
+            // iterator next needs to return none when there is no number next
+            // else: iteration doesn't stop
+            None 
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
+    use super::*;
     #[test]
     fn iterator_demonstration() {
         
@@ -64,7 +91,31 @@ mod tests {
         // into_iter() returns owned values
         let v3 = vec![4, 5, 6];
         let mut v3_into_iter = v3.into_iter();
-        assert_eq!(v3_into_iter.next(), Some(4));
-               
+        assert_eq!(v3_into_iter.next(), Some(4));        
+    }
+
+    #[test]
+    fn counter_struct_iterator_implementation() {
+        let mut counter = Counter::new();
+        assert_eq!(counter.next(), Some(1));
+        assert_eq!(counter.next(), Some(2));
+        assert_eq!(counter.next(), Some(3));
+    }
+
+    #[test]
+    fn counter_struct_iterator_methods() {
+        let sum: u32 = Counter::new().zip(Counter::new().skip(1)) // zip returns (0,1) tuple
+                                 .map(|(a, b)| {
+                                     println!("multiply {} by {}", a, b);
+                                     a * b
+                                    }) // returns iterator with values (a*b)
+                                 .filter(|x| { 
+                                     println!("x%3 : x: {}, %3:{}", x, x%3);
+                                     x % 3 == 0
+                                }) // filters out dividable by 3 numbers
+                                 .sum(); // sums all these numbers
+
+        // sum is 2, 6, 12, 20 -> 6 + 12
+        assert_eq!(18, sum);
     }
 }
