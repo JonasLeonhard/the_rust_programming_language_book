@@ -1,5 +1,5 @@
 use std::error::Error;
-use std::{fs, env};
+use std::{env, fs};
 
 pub fn run(arguments: Arguments) -> Result<(), Box<dyn Error>> {
     let file_contents =
@@ -21,7 +21,7 @@ pub fn run(arguments: Arguments) -> Result<(), Box<dyn Error>> {
 pub struct Arguments {
     pub query: String,
     pub filename: String,
-    pub search_case_insensitive : bool,
+    pub search_case_insensitive: bool,
 }
 
 impl Arguments {
@@ -41,7 +41,7 @@ impl Arguments {
         Ok(Arguments {
             query: query,
             filename: filename,
-            search_case_insensitive : env::var("CASE_INSENSITIVE").is_err()
+            search_case_insensitive: env::var("CASE_INSENSITIVE").is_err(),
         })
     }
 }
@@ -57,7 +57,8 @@ fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
 
     // matching
 
-    contents.lines()
+    contents
+        .lines()
         .filter(|line| line.contains(query))
         .collect()
 }
@@ -73,7 +74,8 @@ fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
 
     // matching
 
-    contents.lines()
+    contents
+        .lines()
         .filter(|line| line.to_lowercase().contains(query.to_lowercase().as_str()))
         .collect()
 }
@@ -86,7 +88,10 @@ mod tests {
         let query = "Java";
         let contents = "\nQuote:\nJava is to JavaScript what Car is to Carpet.\n- Chris Heilmann";
 
-        assert_eq!(vec!["Java is to JavaScript what Car is to Carpet."], search(query, contents));
+        assert_eq!(
+            vec!["Java is to JavaScript what Car is to Carpet."],
+            search(query, contents)
+        );
     }
 
     #[test]
@@ -94,6 +99,9 @@ mod tests {
         let query = "java";
         let contents = "\nQuote:\nJava is to JavaScript what Car is to Carpet.\n- Chris Heilmann";
 
-        assert_eq!(vec!["Java is to JavaScript what Car is to Carpet."], search_case_insensitive(query, contents));
+        assert_eq!(
+            vec!["Java is to JavaScript what Car is to Carpet."],
+            search_case_insensitive(query, contents)
+        );
     }
 }
