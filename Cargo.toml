@@ -3,6 +3,8 @@ name = "project_test"
 version = "0.1.0"
 authors = ["JonasLeonhard <jonasleonhardfl@gmail.com>"]
 edition = "2018"
+license = "MIT"
+description = "The Rust programming language book chapters with a simple cli to call chapter examples."
 
 [profile.dev]
 opt-level = 0
